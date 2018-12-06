@@ -26,6 +26,15 @@
 
 ---
 
+### Result
+
+* Masonry : 60fps
+
+* SDAutoLayout : 2fps
+
+---
+
+
 ### Summary
 
 [Masonry](https://github.com/SnapKit/Masonry) is better
