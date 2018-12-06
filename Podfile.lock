@@ -1,0 +1,42 @@
+PODS:
+  - AndyCategory (1.0.6)
+  - AndyExtension (1.0.7)
+  - AndyGCD (1.0.3)
+  - JPFPSStatus (0.1.1)
+  - Masonry (1.1.0)
+  - SDAutoLayout (2.2.1)
+  - SDWebImage (5.0.0-beta3):
+    - SDWebImage/Core (= 5.0.0-beta3)
+  - SDWebImage/Core (5.0.0-beta3)
+
+DEPENDENCIES:
+  - AndyCategory (~> 1.0.6)
+  - AndyExtension (~> 1.0.7)
+  - AndyGCD (~> 1.0.3)
+  - JPFPSStatus (~> 0.1.1)
+  - Masonry (~> 1.1.0)
+  - SDAutoLayout (~> 2.2.1)
+  - SDWebImage (~> 5.0.0-beta3)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AndyCategory
+    - AndyExtension
+    - AndyGCD
+    - JPFPSStatus
+    - Masonry
+    - SDAutoLayout
+    - SDWebImage
+
+SPEC CHECKSUMS:
+  AndyCategory: 3e82cc9f0e8492a18a883364d0d7d918cc2baff8
+  AndyExtension: 8e3087479a42427c51a07f86ebaf15648d98820e
+  AndyGCD: 6fb95a026ef24ca38005d561bb7ff181a1e89c30
+  JPFPSStatus: 03f32aa3d4d7d0c5bf56f6f3e7cf8b7280a5f52c
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  SDAutoLayout: 8bf6b3bbc8b01f775d4defbb4fda2ace805461be
+  SDWebImage: e52654ceef9fdc19f4c612d64a5b6d3f05dd81a4
+
+PODFILE CHECKSUM: 3e62707892dbcbf970fef2c76ddf9d77e1a7055b
+
+COCOAPODS: 1.5.3
