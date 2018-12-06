@@ -22,6 +22,8 @@
 
 ### Perfance
 
+![Masonty](https://raw.githubusercontent.com/lyandy/CellSizeFit_Demo/master/gif/Masonry.gif)    ![SDAutoLayout](https://raw.githubusercontent.com/lyandy/CellSizeFit_Demo/master/gif/SDAutoLayout.gif)
+
 ---
 
 ### Summary
