@@ -129,7 +129,7 @@
         [strongSelf.tableView reloadRowsAtIndexPaths:[indexPathArrM copy] withRowAnimation:UITableViewRowAnimationAutomatic];
     } timeIntervalWithSecs:0.1];
     
-    [self.timer start];
+    [self.timer resume];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

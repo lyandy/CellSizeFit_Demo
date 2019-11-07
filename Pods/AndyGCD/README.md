@@ -77,7 +77,7 @@ self.timer = [[AndyGCDTimer alloc] initInQueue:[AndyGCDQueue mainQueue]];
     NSLog(@"---%@", [NSThread currentThread]);
 } timeInterval:NSEC_PER_SEC * 3 delay:NSEC_PER_SEC * 3];
 
-[self.timer start];
+[self.timer resume];
 
 
 ```
@@ -132,7 +132,7 @@ NSArray *subpaths = [mgr subpathsAtPath:from];
 
 ### barrier
 
-_注意 ```dispatch_get_global_queue(<#long identifier#>, <#unsigned long flags#>)```是不行的。即在使用barrier的时候不可以使用```[AndyGCDQueue globalQueue]```全局队列_
+_注意使用全局并发队列 ```dispatch_get_global_queue(<#long identifier#>, <#unsigned long flags#>)```是不行的，即不可以使用```[AndyGCDQueue globalQueue]```全局队列, 效果等同于 dispatch_async. 只能使用自己创建的 ```dispatch_async_create``` 并队列，即 ```[[AndyGCDQueue alloc] initConcurrent]```_
 
 
 ```
@@ -157,6 +157,75 @@ AndyGCDQueue *concurrentQueue = [[AndyGCDQueue alloc] initConcurrent];
 [concurrentQueue execute:^{
     NSLog(@"----4-----%@", [NSThread currentThread]);
 }];
+
+```
+
+---
+
+### QOS DispatchContextQueue
+
+```
+AndyGCDQueue *contextQueue = [[AndyGCDQueue alloc] initWithQOS:NSQualityOfServiceUtility queueCount:5];
+for (int i = 0; i < 100; i++) {
+    [contextQueue execute:^{
+
+        NSLog(@"=====> %@", [NSThread currentThread]);
+    }];
+
+    [contextQueue execute:^{
+
+        NSLog(@"=====> %@", [NSThread currentThread]);
+    }];
+
+    [contextQueue execute:^{
+
+        NSLog(@"=====> %@", [NSThread currentThread]);
+    }];
+}
+
+```
+
+---
+
+### AndyLifeFreedomThread
+
+```
+AndyLifeFreedomThread *lifeFreedomThread = [[AndyLifeFreedomThread alloc] init];
+    [lifeFreedomThread asyncExecuteBlock:^{
+        NSLog(@"-----%@", [NSThread currentThread]);
+    }];
+
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [lifeFreedomThread syncExecuteBlock:^{
+            NSLog(@"block-----%@", [NSThread currentThread]);
+        }];
+
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [lifeFreedomThread stop];
+        });
+    });
+
+```
+
+---
+
+### AndySafeThread
+
+```
+[[AndySafeThread sharedSafeThread] syncExecuteBlock:^{
+        NSLog(@"111-----%@", [NSThread currentThread]);
+        [[AndySafeThread sharedSafeThread] syncExecuteBlock:^{
+            NSLog(@"222-----%@", [NSThread currentThread]);
+            [[AndySafeThread sharedSafeThread] asyncExecuteBlock:^{
+                NSLog(@"333-----%@", [NSThread currentThread]);
+
+            }];
+            [[AndySafeThread sharedSafeThread] syncExecuteBlock:^{
+                NSLog(@"444-----%@", [NSThread currentThread]);
+
+            }];
+        }];
+    }];
 
 ```
 

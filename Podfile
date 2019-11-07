@@ -10,5 +10,5 @@ target 'CellSizeFit_Demo' do
     
     pod 'AndyExtension', '~> 1.0.7'
     pod 'AndyCategory', '~> 1.0.6'
-    pod 'AndyGCD', '~> 1.0.3'
+    pod 'AndyGCD', '~> 1.0.7'
 end
